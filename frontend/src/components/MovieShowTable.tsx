@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { MovieOrShow } from '@/types/movieShow';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Edit, Trash2, Eye } from 'lucide-react';
+import { Edit, Trash2 } from 'lucide-react';
 
 interface MovieShowTableProps {
   entries: MovieOrShow[];
