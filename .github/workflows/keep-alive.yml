@@ -1,0 +1,23 @@
+name: Keep Backend Alive
+
+on:
+  schedule:
+    # Runs every 14 minutes
+    - cron: '*/14 * * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  ping-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend Health Endpoint
+        run: |
+          echo "Pinging backend to keep it alive..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://movie-tv-manager.onrender.com/health)
+          echo "Backend responded with status: $response"
+          if [ $response -eq 200 ]; then
+            echo "✅ Backend is alive and healthy!"
+          else
+            echo "⚠️ Backend returned status: $response"
+            exit 1
+          fi
