@@ -8,8 +8,13 @@ import {
   QueryParams 
 } from '@/types/movieShow';
 
+// Use environment variable for production, fallback to proxy in development
+const baseURL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
