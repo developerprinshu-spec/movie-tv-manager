@@ -12,8 +12,8 @@ export const createMovieShowSchema = z.object({
     return !isNaN(num) && num >= 0;
   }, 'Budget must be a valid positive number'),
   location: z.string().max(255, 'Location too long').optional(),
-  duration: z.number().int().min(1, 'Duration must be at least 1 minute').optional(),
-  year: z.number().int().min(1800, 'Year must be after 1800').max(new Date().getFullYear() + 10, 'Year cannot be too far in the future').optional(),
+  duration: z.number().int().min(1, 'Duration must be at least 1 minute').optional().nullable(),
+  year: z.number().int().min(1800, 'Year must be after 1800').max(new Date().getFullYear() + 10, 'Year cannot be too far in the future').optional().nullable(),
   timeRange: z.string().max(50, 'Time range too long').optional(),
   description: z.string().optional(),
   rating: z.union([

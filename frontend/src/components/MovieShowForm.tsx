@@ -33,7 +33,14 @@ export const MovieShowForm: React.FC<MovieShowFormProps> = ({
   const watchedType = watch('type');
 
   const handleFormSubmit = (data: CreateMovieShowInput) => {
-    onSubmit(data);
+    // Clean up NaN values from number inputs (happens when fields are empty)
+    const cleanedData = {
+      ...data,
+      year: isNaN(data.year as any) ? undefined : data.year,
+      duration: isNaN(data.duration as any) ? undefined : data.duration,
+      rating: isNaN(data.rating as any) ? undefined : data.rating,
+    };
+    onSubmit(cleanedData as CreateMovieShowInput);
   };
 
   return (
